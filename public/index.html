@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click HTTP Request</title>
+</head>
+<body>
+    <button id="requestButton">Send HTTP Request</button>
+    <p id="response"></p>
+
+    <script>
+        // Get the button element
+        const button = document.getElementById('requestButton');
+        const responseParagraph = document.getElementById('response');
+
+        // Set up the event listener for the button
+        button.addEventListener('click', () => {
+            // Send a GET request to the server
+            fetch('/api/data')
+                .then(response => response.json())
+                .then(data => {
+                    // Display the response in the paragraph
+                    responseParagraph.innerHTML = data.message;
+                })
+                .catch(error => {
+                    responseParagraph.innerHTML = 'Error: ' + error.message;
+                });
+        });
+    </script>
+</body>
+</html>
